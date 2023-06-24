@@ -1,12 +1,17 @@
 function findNeighbors(node, matrix) {
+    const neighbors = [];
+    const row = node[0];
+    const col = node[1];
     // Up
-
+    if (row > 0 && matrix[row-1][col]) neighbors.push([row-1,col]);
     // Down
-
+    if (row < matrix.length - 1 && matrix[row+1][col]) neighbors.push([row+1,col]);
     // Left
-
+    if (col > 0 && matrix[row][col-1]) neighbors.push([row,col-1]);
     // Right
+    if (col < matrix[row].length - 1 && matrix[row][col+1]) neighbors.push([row, col+1]);
 
+    return neighbors;
     // Your code here
 }
 
