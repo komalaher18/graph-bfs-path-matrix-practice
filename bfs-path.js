@@ -17,7 +17,28 @@ function findNeighbors(node, matrix) {
 
 
 function bfsPath(matrix, startNode, endValue) {
-    // Your code here
+    const queue = [[startNode[0] ,startNode[1]]];
+    const visited = new Set().add(queue[0].toString());
+    const bfsCoordsPath = [];
+
+    while(queue.length){
+        const currCoords = queue.shift();
+        bfsCoordsPath.push(currCoords);
+        if(matrix[currCoords[0]][currCoords[1]] === endValue) return bfsCoordsPath;
+
+        const neighbors = findNeighbors(currCoords, matrix);
+        neighbors.forEach(neighbor => {
+            const neighborStr = neighbor.toString();
+            if(!visited.has(neighborStr)) {
+                queue.push(neighbor);
+                visited.add(neighborStr);
+            }
+        })
+
+    }
+    return false;
+
+
 }
 
 
